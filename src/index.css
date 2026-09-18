@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --font-heading: 'Outfit', 'Mukta', sans-serif;
+    --font-body: 'Plus Jakarta Sans', 'Mukta', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6, .font-heading {
+    font-family: var(--font-heading);
+    letter-spacing: -0.015em;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background-color: #f8fafc;
+    color: #1e293b;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+/* Header Logo Brand Helpers */
+.text-brand-navy {
+  color: #0c2340;
+}
+
+.text-brand-orange {
+  color: #f26522;
+}
+
+.text-brand-green {
+  color: #0a8543;
+}
+
+.bg-brand-navy {
+  background-color: #0c2340;
+}
+
+.bg-brand-orange {
+  background-color: #f26522;
+}
+
+.bg-brand-green {
+  background-color: #0a8543;
+}
+
+.border-brand-orange {
+  border-color: #f26522;
+}
+
+.border-brand-green {
+  border-color: #0a8543;
+}
+
+/* High Contrast & Clean Cards */
+.clean-card {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  box-shadow: 0 4px 12px -2px rgba(12, 35, 64, 0.06);
+}
+
+.clean-card-hover {
+  transition: all 0.25s ease-in-out;
+}
+
+.clean-card-hover:hover {
+  transform: translateY(-2px);
+  border-color: #f26522;
+  box-shadow: 0 10px 25px -4px rgba(242, 101, 34, 0.12);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #94a3b8;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #0284c7;
+}
