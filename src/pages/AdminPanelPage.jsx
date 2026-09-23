@@ -9,6 +9,12 @@ import {
 } from 'react-icons/hi2';
 import { useLanguage } from '../context/LanguageContext';
 import { CONTACT_INFO, getBrandInfo } from '../data/platformData';
+import PhoneVideoMockup from '../components/PhoneVideoMockup';
+import AppScreensSlider from '../components/AppScreensSlider';
+
+const adminAppImages = import.meta.glob('../assets/admin-app images/*.{jpeg,jpg,png,webp}', { eager: true, query: '?url', import: 'default' });
+
+
 
 export default function AdminPanelPage({ onOpenDemoModal }) {
   const { t, lang } = useLanguage();
@@ -103,6 +109,13 @@ export default function AdminPanelPage({ onOpenDemoModal }) {
         </div>
       </div>
 
+      {/* Live Phone Screen Showcase for Admin Panel */}
+      <div className="flex justify-center py-4">
+        <PhoneVideoMockup 
+          badge={lang === 'hi' ? "📱 लाइव एडमिन व मोबाइल ऐप वॉकथ्रू" : "📱 Live Admin & Mobile App Walkthrough"}
+        />
+      </div>
+
       {/* Admin Modules Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
         {adminModulesList.map((m, idx) => {
@@ -119,6 +132,17 @@ export default function AdminPanelPage({ onOpenDemoModal }) {
             </div>
           );
         })}
+      </div>
+
+      {/* Admin App Screenshots Interactive Carousel */}
+      <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs">
+        <AppScreensSlider 
+          images={Object.values(adminAppImages)}
+          title={lang === 'hi' ? "एडमिन पैनल संपूर्ण मोबाइल वॉकथ्रू" : "Complete Admin App Screen Tour"}
+          subtitle={lang === 'hi' ? "21+ वास्तविक मोबाइल स्क्रीन्स: वार्ड, कार्यकर्ता, शिकायत निस्तारण व मॉड्यूल्स" : "21+ live mobile screens covering all operational facets of constituency management"}
+          badge={lang === 'hi' ? "स्क्रीनशॉट गैलरी" : "Admin Gallery"}
+          accentColor="sky"
+        />
       </div>
 
       {/* CTA */}

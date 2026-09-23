@@ -11,6 +11,7 @@ import { FaWhatsapp, FaFacebook, FaTwitter, FaYoutube, FaInstagram, FaLinkedin }
 import confetti from 'canvas-confetti';
 import { useLanguage } from '../context/LanguageContext';
 import { CONTACT_INFO, SOCIAL_LINKS, getBrandInfo } from '../data/platformData';
+import { submitWebsiteInquiry } from '../services/inquiryApi';
 
 export default function ContactPage() {
   const { t, lang } = useLanguage();
@@ -24,11 +25,29 @@ export default function ContactPage() {
     state: lang === 'hi' ? 'उत्तर प्रदेश' : 'Uttar Pradesh',
     message: ''
   });
-  const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setSubmitting(true);
+    
+    // Save to Database via Backend API
+    try {
+      await submitWebsiteInquiry({
+        name: formData.name,
+        phone: formData.phone,
+        role: formData.role,
+        constituency: formData.constituency,
+        state: formData.state,
+        message: formData.message,
+        source: 'website_contact_page'
+      });
+    } catch (err) {
+      console.warn('API submission failed, continuing with WhatsApp direct:', err);
+    }
+
     setSubmitted(true);
+    setSubmitting(false);
     confetti({ particleCount: 70, spread: 60 });
 
     const waText = encodeURIComponent(

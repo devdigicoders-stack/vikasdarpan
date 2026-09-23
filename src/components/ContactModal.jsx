@@ -10,6 +10,7 @@ import {
 import { FaWhatsapp } from 'react-icons/fa';
 import { useLanguage } from '../context/LanguageContext';
 import { CONTACT_INFO, getBrandInfo } from '../data/platformData';
+import { submitWebsiteInquiry } from '../services/inquiryApi';
 import confetti from 'canvas-confetti';
 
 export default function ContactModal({ isOpen, onClose }) {
@@ -25,12 +26,31 @@ export default function ContactModal({ isOpen, onClose }) {
     message: ''
   });
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setSubmitting(true);
+
+    // Save to Database via Backend API
+    try {
+      await submitWebsiteInquiry({
+        name: formData.name,
+        phone: formData.phone,
+        role: formData.role,
+        constituency: formData.constituency,
+        state: formData.state,
+        message: formData.message,
+        source: 'website_demo_modal'
+      });
+    } catch (err) {
+      console.warn('API submission failed, continuing with WhatsApp direct:', err);
+    }
+
     setSubmitted(true);
+    setSubmitting(false);
     confetti({
       particleCount: 80,
       spread: 70,

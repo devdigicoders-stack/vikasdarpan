@@ -9,6 +9,13 @@ import {
 } from 'react-icons/hi2';
 import { useLanguage } from '../context/LanguageContext';
 import { getBrandInfo } from '../data/platformData';
+import PhoneVideoMockup from '../components/PhoneVideoMockup';
+import AppScreensSlider from '../components/AppScreensSlider';
+import citizenPromoVideo from '../assets/meadia/citizen-app-promo.mp4';
+
+const citizenAppImages = import.meta.glob('../assets/citizen-app images/*.{jpeg,jpg,png,webp}', { eager: true, query: '?url', import: 'default' });
+
+
 
 export default function CitizenAppPage({ onOpenDemoModal }) {
   const { t, lang } = useLanguage();
@@ -103,13 +110,22 @@ export default function CitizenAppPage({ onOpenDemoModal }) {
         </div>
       </div>
 
+      {/* Live Phone Screen Showcase for Citizen App */}
+      <div className="flex justify-center py-4">
+        <PhoneVideoMockup 
+          videoSrc={citizenPromoVideo}
+          badge={lang === 'hi' ? "📱 नागरिक मोबाइल वेब PWA डेमो" : "📱 Citizen Mobile PWA Live Demo"}
+          badgeColor="text-emerald-400 border-emerald-500/40"
+        />
+      </div>
+
       {/* Citizen App Modules Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
         {citizenModulesList.map((m, idx) => {
           const Icon = m.icon;
           return (
             <div key={idx} className="p-5 rounded-2xl bg-white border border-slate-200 space-y-3 shadow-xs">
-              <div className="w-10 h-10 rounded-xl bg-sky-100 text-sky-700 border border-sky-200 flex items-center justify-center">
+              <div className="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 border border-emerald-200 flex items-center justify-center">
                 <Icon className="w-5 h-5" />
               </div>
               <h3 className="font-heading font-black text-base text-slate-950">{m.title}</h3>
@@ -119,6 +135,17 @@ export default function CitizenAppPage({ onOpenDemoModal }) {
             </div>
           );
         })}
+      </div>
+
+      {/* Citizen App Screenshots Interactive Carousel */}
+      <div className="p-6 rounded-2xl bg-white border border-slate-200 shadow-xs">
+        <AppScreensSlider 
+          images={Object.values(citizenAppImages)}
+          title={lang === 'hi' ? "नागरिक मोबाइल वेब ऐप संपूर्ण स्क्रीन गैलरी" : "Citizen Web App (PWA) Interactive Screenshots"}
+          subtitle={lang === 'hi' ? "ओटीपी लॉगिन, जन समस्या, विकास कार्य, सदस्यता कार्ड और पोस्टर मेकर की मोबाइल स्क्रीन" : "Full interactive screen gallery of the constituent portal"}
+          badge={lang === 'hi' ? "स्क्रीनशॉट गैलरी" : "Citizen Gallery"}
+          accentColor="emerald"
+        />
       </div>
     </div>
   );
