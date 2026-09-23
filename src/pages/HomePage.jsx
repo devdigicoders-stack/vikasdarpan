@@ -104,32 +104,42 @@ export default function HomePage({ onOpenDemoModal }) {
                 <span>{lang === 'hi' ? 'ऑल-इन-वन डिजिटल गवर्नेंस एवं चुनाव प्रबंधन' : 'All-in-One ERP for Modern Constituency Management'}</span>
               </div>
 
-              {/* Main Headline */}
-              <h1 className="font-heading font-black text-3xl sm:text-4xl lg:text-[44px] tracking-tight text-white leading-[1.15]">
-                {lang === 'hi' ? (
-                  <>
-                    आपकी आवाज़ <br />
-                    बेहतर कल की ओर — <br />
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-300 to-emerald-400">
-                      जनता से जनहित तक
-                    </span>
-                  </>
-                ) : (
-                  <>
-                    Digitize Governance <br />
-                    Build a <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 to-amber-300">Better</span> <br />
-                    <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-300">
-                      Tomorrow
-                    </span>
-                  </>
-                )}
-              </h1>
+              {/* Main Headline with Prominent Vikas Darpan Brand Name */}
+              <div className="space-y-1">
+                <div className="text-sm font-extrabold text-amber-400 uppercase tracking-widest flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-orange-500"></span>
+                  <span>{lang === 'hi' ? 'विकास दर्पण डिजिटल मंच' : 'Vikas Darpan Digital Ecosystem'}</span>
+                </div>
+                <h1 className="font-heading font-black text-3xl sm:text-4xl lg:text-[46px] tracking-tight text-white leading-[1.15]">
+                  {lang === 'hi' ? (
+                    <>
+                      <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-300 to-emerald-400">
+                        विकास दर्पण
+                      </span> <br />
+                      आपकी आवाज़ | बेहतर कल की ओर — <br />
+                      <span className="text-orange-400 font-extrabold">
+                        काम भी, जनता का भरोसा भी
+                      </span>
+                    </>
+                  ) : (
+                    <>
+                      <span className="text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-amber-300 to-emerald-400">
+                        Vikas Darpan
+                      </span> <br />
+                      Aapki Awaaz | Better Tomorrow — <br />
+                      <span className="text-emerald-400 font-extrabold">
+                        Kaam Bhi, Janta Ka Bharosa Bhi
+                      </span>
+                    </>
+                  )}
+                </h1>
+              </div>
 
-              {/* Subtitle Description */}
+              {/* Subtitle Description focused entirely on Vikas Darpan */}
               <p className="text-xs sm:text-sm text-slate-300 max-w-xl leading-relaxed font-normal">
                 {lang === 'hi'
-                  ? 'विकास दर्पण (A Product by DigiCoders) जनप्रतिनिधियों, विधायकों, सांसदों और राजनीतिक दलों के लिए एकीकृत डिजिटल प्लेटफ़ॉर्म है जो जन समस्या निवारण, विकास कार्य ट्रैकिंग, डिजिटल सदस्यता और डायनेमिक पोस्टर जनरेशन को आसान बनाता है।'
-                  : 'Vikas Darpan is a powerful political SaaS solution designed for MLAs, MPs, Candidates & Political Parties to simplify constituent management, grievance redressal, public works, and empower ground-level growth.'}
+                  ? 'विकास दर्पण जनप्रतिनिधियों, विधायकों, सांसदों, प्रत्याशियों और राजनीतिक दलों के लिए एक संपूर्ण डिजिटल जन-संवाद एवं सुशासन प्रबंधन प्रणाली है। यह जन समस्या निवारण, विकास कार्य ट्रैकिंग, डिजिटल कार्यकर्ता आईडी और ऑटोमेटेड पोस्टर स्टूडियो को एक क्लिक में सक्षम बनाता है।'
+                  : 'Vikas Darpan is a dedicated political and governance SaaS platform empowering MLAs, MPs, Candidates, and Parties with real-time grievance redressal, public works tracking, verified cadre management, and viral poster generation.'}
               </p>
 
               {/* Action Buttons Row */}
@@ -226,7 +236,7 @@ export default function HomePage({ onOpenDemoModal }) {
       </section>
 
       {/* 2. SECTION A OVERVIEW: ELECTION ADMIN PANEL */}
-      <section id="admin-panel" className="scroll-mt-24 max-w-6xl mx-auto px-4 sm:px-6">
+      <section id="admin-panel" className="scroll-mt-24 max-w-7xl mx-auto px-4 sm:px-6">
         <div className="rounded-2xl bg-white border border-slate-200 p-6 sm:p-8 shadow-xs space-y-8">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-slate-200">
             <div>
@@ -396,7 +406,8 @@ export default function HomePage({ onOpenDemoModal }) {
     </section>
 
       {/* 3. SECTION B OVERVIEW: CITIZEN MOBILE WEB APP (PWA) */}
-      <section id="citizen-app" className="scroll-mt-24 max-w-6xl mx-auto px-4 sm:px-6">
+      <section id="citizen-app" className="scroll-mt-24 max-w-7xl mx-auto px-4 sm:px-6">
+
         <div className="rounded-2xl bg-white border border-slate-200 p-6 sm:p-8 shadow-xs space-y-6">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-4 border-b border-slate-200">
             <div>
@@ -496,7 +507,7 @@ export default function HomePage({ onOpenDemoModal }) {
       </section>
 
       {/* 4. 11 ACTIVE TENANT MODULES RECAP (PDF PAGE 6) */}
-      <section id="modules" className="scroll-mt-24 max-w-6xl mx-auto px-4 sm:px-6">
+      <section id="modules" className="scroll-mt-24 max-w-7xl mx-auto px-4 sm:px-6">
         <div className="text-center max-w-2xl mx-auto mb-8 space-y-2">
           <span className="text-[#0c2340] text-xs font-black uppercase tracking-widest bg-orange-50 border border-orange-200 px-3.5 py-1 rounded-full">
             {lang === 'hi' ? '11 सक्रिय टेनेन्ट मॉड्यूल्स (PDF स्पेसिफिकेशन)' : '11 Active Tenant Modules (PDF Specification)'}
@@ -532,12 +543,12 @@ export default function HomePage({ onOpenDemoModal }) {
       </section>
 
       {/* 5. 4-LEVEL GEOGRAPHIC AREA HIERARCHY (PDF PAGE 5) */}
-      <section id="hierarchy" className="scroll-mt-24 max-w-6xl mx-auto px-4 sm:px-6">
+      <section id="hierarchy" className="scroll-mt-24 max-w-7xl mx-auto px-4 sm:px-6">
         <HierarchyMap />
       </section>
 
       {/* 6. CONTACT & VIP ONBOARDING SECTION */}
-      <section id="contact" className="scroll-mt-24 max-w-6xl mx-auto px-4 sm:px-6">
+      <section id="contact" className="scroll-mt-24 max-w-7xl mx-auto px-4 sm:px-6">
         <div className="rounded-2xl bg-white border border-slate-200 p-6 sm:p-8 shadow-xs space-y-8">
           <div className="text-center max-w-2xl mx-auto space-y-2">
             <span className="text-[#0c2340] text-xs font-black uppercase tracking-widest bg-orange-50 border border-orange-200 px-3.5 py-1 rounded-full">
@@ -772,7 +783,7 @@ export default function HomePage({ onOpenDemoModal }) {
       </section>
 
       {/* 7. BOTTOM CTA BANNER */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="rounded-2xl bg-gradient-to-r from-[#0c2340] via-[#16365f] to-[#0c2340] p-8 sm:p-10 text-white shadow-xl text-center space-y-4 border border-orange-400/30">
           <div className="max-w-2xl mx-auto space-y-3">
             <span className="inline-block bg-orange-500/20 text-orange-300 border border-orange-400/40 px-3.5 py-0.5 rounded-full text-xs font-extrabold tracking-wider uppercase">

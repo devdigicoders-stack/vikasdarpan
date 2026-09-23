@@ -168,95 +168,122 @@ export default function PosterStudioInteractive() {
           </div>
         </div>
 
-        {/* Right: Dynamic High-Res Poster Preview Card */}
+        {/* Right: Dynamic High-Res Poster Preview inside Sleek Phone Mockup */}
         <div className="lg:col-span-6 flex justify-center">
-          <div className="relative w-full max-w-[290px] aspect-[4/5] rounded-2xl overflow-hidden shadow-lg border-2 border-white group">
-            {/* Poster Canvas */}
-            <div className={`w-full h-full bg-gradient-to-br ${selectedTemplate.bgGradient} p-4 flex flex-col justify-between relative text-white select-none`}>
-              {/* Top: Header & Leader Profile */}
-              <div className="relative z-10">
-                <div className="flex items-center justify-between border-b border-white/20 pb-2">
-                  <div>
-                    <span className="text-[9px] uppercase font-extrabold tracking-widest text-sky-200 block">
-                      {selectedTemplate.tag}
-                    </span>
-                    <h4 className="font-heading font-black text-sm tracking-tight text-white">
-                      {selectedTemplate.title}
-                    </h4>
-                  </div>
-                  <div className="w-7 h-7 rounded-md bg-white/20 backdrop-blur-md flex items-center justify-center text-amber-300 font-bold text-[10px] border border-white/30">
-                    🇮🇳
-                  </div>
-                </div>
+          {/* Realistic Phone Mockup Frame */}
+          <div className="relative w-full max-w-[280px] sm:max-w-[300px] rounded-[2.5rem] p-3 bg-slate-950 shadow-2xl border-4 border-slate-800 ring-1 ring-slate-700/50">
+            {/* Phone Top Notch / Speaker & Camera */}
+            <div className="flex items-center justify-between px-4 pb-2 pt-0.5 text-[10px] text-slate-400 font-mono">
+              <span className="font-bold text-white">9:41</span>
+              <div className="w-16 h-3.5 bg-slate-900 rounded-full flex items-center justify-center gap-1.5 border border-slate-800">
+                <div className="w-2 h-2 rounded-full bg-slate-950 border border-slate-700"></div>
+                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500/80"></div>
+              </div>
+              <div className="flex items-center gap-1 text-[9px]">
+                <span>5G</span>
+                <span>100%</span>
+              </div>
+            </div>
 
-                {/* Candidate Spotlight Banner */}
-                <div className="mt-2 flex items-center gap-2 bg-black/40 backdrop-blur-md p-1.5 rounded-lg border border-white/15">
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-amber-400 to-sky-400 p-0.5 shrink-0">
-                    <img
-                      src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&auto=format&fit=crop&q=80"
-                      alt="Leader"
-                      className="w-full h-full object-cover rounded-full"
-                    />
-                  </div>
-                  <div className="min-w-0">
-                    <span className="text-[9px] text-sky-200 font-bold uppercase tracking-wider block">
-                      {t.poster.leaderTitle}
-                    </span>
-                    <span className="text-[11px] font-bold text-white truncate block">
-                      {selectedTemplate.leader}
-                    </span>
-                  </div>
-                </div>
+            {/* Inner Phone Screen */}
+            <div className="relative aspect-[9/17] rounded-[1.8rem] overflow-hidden bg-slate-900 border border-slate-800 flex flex-col shadow-inner">
+              
+              {/* App Bar inside phone */}
+              <div className="bg-slate-900/95 px-3 py-1.5 border-b border-slate-800 flex items-center justify-between text-white z-20">
+                <span className="text-[10px] font-black text-amber-400 uppercase tracking-wide">
+                  {brand.name} Studio
+                </span>
+                <span className="px-1.5 py-0.2 rounded bg-emerald-950 border border-emerald-500/40 text-emerald-400 text-[9px] font-bold">
+                  HD 1080p
+                </span>
               </div>
 
-              {/* Center: Quote */}
-              <div className="relative z-10 my-auto text-center py-2 px-1">
-                <p className="font-heading font-black text-base sm:text-lg text-amber-300 tracking-wide leading-tight drop-shadow-md">
-                  {selectedTemplate.quote}
-                </p>
-                <div className="w-12 h-0.5 bg-white/40 mx-auto rounded-full mt-2"></div>
-              </div>
+              {/* Poster Canvas */}
+              <div className={`w-full flex-1 bg-gradient-to-br ${selectedTemplate.bgGradient} p-3 flex flex-col justify-between relative text-white select-none overflow-hidden`}>
+                
+                {/* Top: Header & Leader Profile */}
+                <div className="relative z-10 space-y-1.5">
+                  <div className="flex items-center justify-between border-b border-white/20 pb-1.5">
+                    <div>
+                      <span className="text-[9px] uppercase font-extrabold tracking-widest text-sky-200 block">
+                        {selectedTemplate.tag}
+                      </span>
+                      <h4 className="font-heading font-black text-xs sm:text-sm tracking-tight text-white leading-tight">
+                        {selectedTemplate.title}
+                      </h4>
+                    </div>
+                    <div className="w-6 h-6 rounded-md bg-white/20 backdrop-blur-md flex items-center justify-center text-amber-300 font-bold text-[10px] border border-white/30 shrink-0">
+                      🇮🇳
+                    </div>
+                  </div>
 
-              {/* Bottom: Dynamic Supporter Overlay */}
-              <div className="relative z-10 bg-slate-950/85 backdrop-blur-xl p-2.5 rounded-xl border border-white/20 shadow-lg">
-                <div className="flex items-center gap-2">
-                  <div className="relative">
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-tr from-sky-400 to-amber-300 p-0.5">
+                  {/* Candidate Spotlight Banner */}
+                  <div className="flex items-center gap-2 bg-black/40 backdrop-blur-md p-1.5 rounded-lg border border-white/15">
+                    <div className="w-7 h-7 rounded-full bg-gradient-to-tr from-amber-400 to-sky-400 p-0.5 shrink-0">
                       <img
-                        src={sampleAvatars[avatarIndex].url}
-                        alt="Supporter"
+                        src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=150&auto=format&fit=crop&q=80"
+                        alt="Leader"
                         className="w-full h-full object-cover rounded-full"
                       />
                     </div>
-                    <div className="absolute -bottom-0.5 -right-0.5 w-4 h-4 bg-emerald-500 rounded-full flex items-center justify-center text-white border border-slate-950">
-                      <HiOutlineCheckBadge className="w-2.5 h-2.5" />
+                    <div className="min-w-0">
+                      <span className="text-[8px] text-sky-200 font-bold uppercase tracking-wider block">
+                        {t.poster.leaderTitle}
+                      </span>
+                      <span className="text-[10px] font-bold text-white truncate block">
+                        {selectedTemplate.leader}
+                      </span>
                     </div>
-                  </div>
-
-                  <div className="min-w-0 flex-1">
-                    <span className="text-[8px] text-sky-300 font-bold uppercase tracking-wider block">
-                      {t.poster.nivedak}
-                    </span>
-                    <h5 className="font-heading font-extrabold text-xs text-white truncate">
-                      {userName || t.poster.sampleName}
-                    </h5>
-                    <p className="text-[10px] text-slate-300 truncate">
-                      {userDesignation || t.poster.sampleDesignation}
-                    </p>
                   </div>
                 </div>
 
-                <div className="mt-1.5 pt-1.5 border-t border-white/10 flex items-center justify-between text-[8px] text-slate-400 font-mono">
-                  <span>{brand.name}</span>
-                  <span className="text-sky-300 font-semibold">{t.poster.officialBadge}</span>
+                {/* Center: Quote */}
+                <div className="relative z-10 my-auto text-center py-2 px-1">
+                  <p className="font-heading font-black text-xs sm:text-sm text-amber-300 tracking-wide leading-snug drop-shadow-md">
+                    "{selectedTemplate.quote}"
+                  </p>
+                  <div className="w-10 h-0.5 bg-white/40 mx-auto rounded-full mt-1.5"></div>
+                </div>
+
+                {/* Bottom: Dynamic Supporter Overlay */}
+                <div className="relative z-10 bg-slate-950/90 backdrop-blur-xl p-2 rounded-xl border border-white/20 shadow-lg">
+                  <div className="flex items-center gap-2">
+                    <div className="relative shrink-0">
+                      <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-sky-400 to-amber-300 p-0.5">
+                        <img
+                          src={sampleAvatars[avatarIndex].url}
+                          alt="Supporter"
+                          className="w-full h-full object-cover rounded-full"
+                        />
+                      </div>
+                      <div className="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 bg-emerald-500 rounded-full flex items-center justify-center text-white border border-slate-950">
+                        <HiOutlineCheckBadge className="w-2 h-2" />
+                      </div>
+                    </div>
+
+                    <div className="min-w-0 flex-1">
+                      <span className="text-[7.5px] text-sky-300 font-bold uppercase tracking-wider block">
+                        {t.poster.nivedak}
+                      </span>
+                      <h5 className="font-heading font-extrabold text-[11px] text-white truncate">
+                        {userName || t.poster.sampleName}
+                      </h5>
+                      <p className="text-[9px] text-slate-300 truncate">
+                        {userDesignation || t.poster.sampleDesignation}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="mt-1 pt-1 border-t border-white/10 flex items-center justify-between text-[7.5px] text-slate-400 font-mono">
+                    <span>{brand.name}</span>
+                    <span className="text-emerald-400 font-semibold">{t.poster.officialBadge}</span>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Top label */}
-            <div className="absolute top-2 left-2 bg-slate-900/80 backdrop-blur-md px-2 py-0.5 rounded-full text-[9px] font-bold text-emerald-400 border border-emerald-400/30">
-              HD (1080x1350)
-            </div>
+            {/* Bottom Home Bar */}
+            <div className="w-20 h-1 bg-slate-700 rounded-full mx-auto mt-2"></div>
           </div>
         </div>
       </div>

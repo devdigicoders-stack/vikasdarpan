@@ -10,7 +10,7 @@ export default function TopAnnouncement() {
 
   return (
     <div className="bg-sky-800 text-white text-xs font-semibold py-1.5 px-4 border-b border-sky-900 shadow-xs">
-      <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-between gap-2">
+      <div className="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
         <div className="flex items-center gap-2">
           <span className="flex h-2 w-2 relative">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-300 opacity-75"></span>

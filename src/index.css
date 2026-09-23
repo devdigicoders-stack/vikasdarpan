@@ -2,55 +2,68 @@
 
 @layer base {
   :root {
-    --font-heading: 'Outfit', 'Mukta', sans-serif;
-    --font-body: 'Plus Jakarta Sans', 'Mukta', sans-serif;
+    --font-heading: 'Outfit', 'Mukta', 'Hind', sans-serif;
+    --font-body: 'Plus Jakarta Sans', 'Inter', 'Mukta', sans-serif;
+    --font-hindi: 'Mukta', 'Hind', sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6, .font-heading {
     font-family: var(--font-heading);
-    letter-spacing: -0.015em;
+    letter-spacing: -0.02em;
+    line-height: 1.25;
   }
 
   body {
     font-family: var(--font-body);
     background-color: #f8fafc;
     color: #1e293b;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 }
 
-/* Header Logo Brand Helpers */
+/* Official Vikas Darpan Brand Palette from Logo */
+/* Royal Navy Blue: #0c2340 */
+/* Saffron/Tiranga Orange: #f26522 */
+/* Prosperity Green: #0a8543 */
+/* Sky Accent: #0284c7 */
+
 .text-brand-navy {
   color: #0c2340;
 }
-
 .text-brand-orange {
   color: #f26522;
 }
-
 .text-brand-green {
   color: #0a8543;
+}
+.text-brand-sky {
+  color: #0284c7;
 }
 
 .bg-brand-navy {
   background-color: #0c2340;
 }
-
 .bg-brand-orange {
   background-color: #f26522;
 }
-
 .bg-brand-green {
   background-color: #0a8543;
+}
+.bg-brand-sky {
+  background-color: #0284c7;
 }
 
 .border-brand-orange {
   border-color: #f26522;
 }
-
 .border-brand-green {
   border-color: #0a8543;
+}
+.border-brand-navy {
+  border-color: #0c2340;
 }
 
 /* High Contrast & Clean Cards */

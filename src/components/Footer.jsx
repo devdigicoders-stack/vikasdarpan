@@ -19,7 +19,7 @@ export default function Footer() {
       {/* Top Brand Accent Bar */}
       <div className="h-1.5 w-full bg-gradient-to-r from-[#f26522] via-[#0c2340] to-[#0a8543]"></div>
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 pt-10 pb-8 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-10 pb-8 relative z-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-8">
           {/* Brand Col */}
           <div className="lg:col-span-2 space-y-3">
@@ -27,7 +27,7 @@ export default function Footer() {
               <img 
                 src={headerLogoImg} 
                 alt={brand.name} 
-                className="h-14 w-auto object-contain rounded-xl transition-transform group-hover:scale-102"
+                className="h-16 sm:h-20 w-auto object-contain transition-transform group-hover:scale-103"
               />
             </Link>
 
@@ -66,53 +66,58 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Social Icons */}
-            <div className="flex items-center gap-2 pt-1">
-              <a 
-                href={SOCIAL_LINKS.whatsappChannel} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                title="WhatsApp Channel" 
-                className="w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-200 flex items-center justify-center text-[#0a8543] hover:bg-[#0a8543] hover:text-white transition-all shadow-xs"
-              >
-                <FaWhatsapp className="w-4 h-4" />
-              </a>
-              <a 
-                href={SOCIAL_LINKS.instagram} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                title="Instagram" 
-                className="w-8 h-8 rounded-lg bg-pink-50 border border-pink-200 flex items-center justify-center text-pink-600 hover:bg-pink-600 hover:text-white transition-all shadow-xs"
-              >
-                <FaInstagram className="w-4 h-4" />
-              </a>
-              <a 
-                href={SOCIAL_LINKS.facebook} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                title="Facebook" 
-                className="w-8 h-8 rounded-lg bg-blue-50 border border-blue-200 flex items-center justify-center text-blue-600 hover:bg-blue-600 hover:text-white transition-all shadow-xs"
-              >
-                <FaFacebook className="w-4 h-4" />
-              </a>
-              <a 
-                href={SOCIAL_LINKS.youtube} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                title="YouTube" 
-                className="w-8 h-8 rounded-lg bg-red-50 border border-red-200 flex items-center justify-center text-red-600 hover:bg-red-600 hover:text-white transition-all shadow-xs"
-              >
-                <FaYoutube className="w-4 h-4" />
-              </a>
-              <a 
-                href={SOCIAL_LINKS.linkedin} 
-                target="_blank" 
-                rel="noopener noreferrer" 
-                title="LinkedIn" 
-                className="w-8 h-8 rounded-lg bg-slate-50 border border-slate-200 flex items-center justify-center text-[#0c2340] hover:bg-[#0c2340] hover:text-white transition-all shadow-xs"
-              >
-                <FaLinkedin className="w-4 h-4" />
-              </a>
+            {/* Social Icons (DigiCoders Official Channels - opens in new tab) */}
+            <div className="space-y-1.5 pt-1">
+              <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
+                {lang === 'hi' ? 'सोशल मीडिया से जुड़ें' : 'Follow DigiCoders'}
+              </span>
+              <div className="flex flex-wrap items-center gap-2">
+                <a 
+                  href={SOCIAL_LINKS.whatsappChannel} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  title="WhatsApp Channel (DigiCoders)" 
+                  className="w-8 h-8 rounded-lg bg-emerald-50 border border-emerald-200 flex items-center justify-center text-[#0a8543] hover:bg-[#0a8543] hover:text-white transition-all shadow-xs hover:scale-105"
+                >
+                  <FaWhatsapp className="w-4 h-4" />
+                </a>
+                <a 
+                  href={SOCIAL_LINKS.instagram} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  title="Instagram (DigiCoders Lucknow)" 
+                  className="w-8 h-8 rounded-lg bg-pink-50 border border-pink-200 flex items-center justify-center text-pink-600 hover:bg-pink-600 hover:text-white transition-all shadow-xs hover:scale-105"
+                >
+                  <FaInstagram className="w-4 h-4" />
+                </a>
+                <a 
+                  href={SOCIAL_LINKS.facebook} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  title="Facebook (DigiCoders Lucknow)" 
+                  className="w-8 h-8 rounded-lg bg-blue-50 border border-blue-200 flex items-center justify-center text-blue-600 hover:bg-blue-600 hover:text-white transition-all shadow-xs hover:scale-105"
+                >
+                  <FaFacebook className="w-4 h-4" />
+                </a>
+                <a 
+                  href={SOCIAL_LINKS.youtube} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  title="YouTube (DigiCoders Lucknow)" 
+                  className="w-8 h-8 rounded-lg bg-red-50 border border-red-200 flex items-center justify-center text-red-600 hover:bg-red-600 hover:text-white transition-all shadow-xs hover:scale-105"
+                >
+                  <FaYoutube className="w-4 h-4" />
+                </a>
+                <a 
+                  href={SOCIAL_LINKS.linkedin} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  title="LinkedIn (DigiCoders Technologies)" 
+                  className="w-8 h-8 rounded-lg bg-slate-50 border border-slate-200 flex items-center justify-center text-[#0c2340] hover:bg-[#0c2340] hover:text-white transition-all shadow-xs hover:scale-105"
+                >
+                  <FaLinkedin className="w-4 h-4" />
+                </a>
+              </div>
             </div>
           </div>
 

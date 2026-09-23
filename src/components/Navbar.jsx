@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { 
   HiOutlineSparkles, 
@@ -14,22 +14,58 @@ import headerLogoImg from '../assets/header-logo.png';
 
 export default function Navbar({ onOpenDemoModal }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('home');
+  const [scrollProgress, setScrollProgress] = useState(0);
   const location = useLocation();
   const { lang, t } = useLanguage();
   const brand = getBrandInfo(lang);
 
   const navLinks = [
-    { name: lang === 'hi' ? "होम" : "Home", href: "#home" },
-    { name: lang === 'hi' ? "प्रशासनिक हब" : "Admin Panel", href: "#admin-panel" },
-    { name: lang === 'hi' ? "नागरिक ऐप" : "Citizen App", href: "#citizen-app" },
-    { name: lang === 'hi' ? "11 मॉड्यूल्स" : "11 Modules", href: "#modules" },
-    { name: lang === 'hi' ? "पदानुक्रम" : "Hierarchy", href: "#hierarchy" },
-    { name: lang === 'hi' ? "संपर्क" : "Contact", href: "#contact" },
+    { id: "home", name: lang === 'hi' ? "होम" : "Home", href: "#home" },
+    { id: "admin-panel", name: lang === 'hi' ? "प्रशासनिक हब" : "Admin Panel", href: "#admin-panel" },
+    { id: "citizen-app", name: lang === 'hi' ? "नागरिक ऐप" : "Citizen App", href: "#citizen-app" },
+    { id: "modules", name: lang === 'hi' ? "11 मॉड्यूल्स" : "11 Modules", href: "#modules" },
+    { id: "hierarchy", name: lang === 'hi' ? "पदानुक्रम" : "Hierarchy", href: "#hierarchy" },
+    { id: "contact", name: lang === 'hi' ? "संपर्क" : "Contact", href: "#contact" },
   ];
 
-  const handleNavClick = (e, href) => {
+  // Scroll Spy and Progress Tracker
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      setIsScrolled(scrollY > 20);
+
+      // Calculate total page scroll progress percentage
+      const winHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+      if (winHeight > 0) {
+        setScrollProgress((scrollY / winHeight) * 100);
+      }
+
+      // Detect current active section in view
+      const sectionIds = ['home', 'admin-panel', 'citizen-app', 'modules', 'hierarchy', 'contact'];
+      for (let i = sectionIds.length - 1; i >= 0; i--) {
+        const el = document.getElementById(sectionIds[i]);
+        if (el) {
+          const rect = el.getBoundingClientRect();
+          // If top of section is within 250px of top viewport
+          if (rect.top <= 250) {
+            setActiveSection(sectionIds[i]);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const handleNavClick = (e, href, id) => {
     e.preventDefault();
     setMobileMenuOpen(false);
+    setActiveSection(id || href.replace('#', ''));
     const element = document.querySelector(href);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth', block: 'start' });
@@ -37,54 +73,89 @@ export default function Navbar({ onOpenDemoModal }) {
   };
 
   return (
-    <nav className="sticky top-0 z-40 bg-white border-b border-slate-200 shadow-xs transition-all">
+    <nav className={`sticky top-0 z-40 transition-all duration-300 ${
+      isScrolled 
+        ? 'bg-white/95 backdrop-blur-md border-b border-slate-200/90 shadow-md py-0' 
+        : 'bg-white border-b border-slate-200 shadow-xs'
+    }`}>
+      {/* Scroll Progress Bar at top of header */}
+      <div 
+        className="h-1 bg-gradient-to-r from-[#f26522] via-[#0284c7] to-[#0a8543] transition-all duration-150 ease-out origin-left"
+        style={{ width: `${scrollProgress}%` }}
+      />
+
       <div className="max-w-7xl mx-auto px-3 sm:px-6">
-        <div className="flex items-center justify-between h-20 gap-4">
-          {/* Brand Logo with header-logo.png */}
-          <a href="#home" onClick={(e) => handleNavClick(e, "#home")} className="flex items-center gap-2.5 group shrink-0 py-1">
+        <div className={`flex items-center justify-between transition-all duration-300 gap-4 ${
+          isScrolled ? 'h-18 sm:h-20' : 'h-20 sm:h-22'
+        }`}>
+          {/* Brand Logo with cropped prominent header-logo.png */}
+          <a href="#home" onClick={(e) => handleNavClick(e, "#home", "home")} className="flex items-center gap-2 group shrink-0 py-1">
             <img 
               src={headerLogoImg} 
               alt={brand.name} 
-              className="h-14 sm:h-16 w-auto max-w-[220px] sm:max-w-[260px] object-contain rounded-xl sm:rounded-2xl transition-transform group-hover:scale-102"
+              className={`w-auto object-contain transition-all duration-300 group-hover:scale-103 ${
+                isScrolled ? 'h-12 sm:h-14 md:h-16' : 'h-14 sm:h-16 md:h-18'
+              }`}
             />
           </a>
 
-          {/* Desktop Nav Links - Single Line with whitespace-nowrap */}
+          {/* Desktop Nav Links with Active Indicator & Smooth Transitions */}
           <div className="hidden xl:flex items-center gap-1.5 shrink-0">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={(e) => handleNavClick(e, link.href)}
-                className="px-3 py-1.5 rounded-lg text-xs font-bold text-slate-700 hover:text-[#f26522] hover:bg-orange-50/60 transition-all whitespace-nowrap cursor-pointer"
-              >
-                {link.name}
-              </a>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.id;
+              return (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={(e) => handleNavClick(e, link.href, link.id)}
+                  className={`relative px-3.5 py-2 rounded-xl text-xs font-bold transition-all duration-200 whitespace-nowrap cursor-pointer ${
+                    isActive 
+                      ? 'text-[#f26522] bg-orange-50/90 font-extrabold shadow-2xs' 
+                      : 'text-slate-700 hover:text-[#f26522] hover:bg-orange-50/50'
+                  }`}
+                >
+                  {link.name}
+                  {/* Active animated bottom dot & highlight bar */}
+                  {isActive && (
+                    <span className="absolute bottom-0.5 left-3 right-3 h-0.5 bg-gradient-to-r from-[#f26522] to-amber-500 rounded-full animate-in fade-in zoom-in duration-200"></span>
+                  )}
+                </a>
+              );
+            })}
           </div>
 
           {/* Mid desktop fallback: between lg and xl */}
           <div className="hidden lg:flex xl:hidden items-center gap-1 shrink-0">
-            {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                onClick={(e) => handleNavClick(e, link.href)}
-                className="px-2 py-1.5 rounded-lg text-xs font-bold text-slate-700 hover:text-[#f26522] hover:bg-orange-50/60 transition-all whitespace-nowrap cursor-pointer"
-              >
-                {link.name}
-              </a>
-            ))}
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.id;
+              return (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={(e) => handleNavClick(e, link.href, link.id)}
+                  className={`relative px-2.5 py-2 rounded-xl text-xs font-bold transition-all duration-200 whitespace-nowrap cursor-pointer ${
+                    isActive 
+                      ? 'text-[#f26522] bg-orange-50/90 font-extrabold shadow-2xs' 
+                      : 'text-slate-700 hover:text-[#f26522] hover:bg-orange-50/50'
+                  }`}
+                >
+                  {link.name}
+                  {isActive && (
+                    <span className="absolute bottom-0.5 left-2 right-2 h-0.5 bg-[#f26522] rounded-full"></span>
+                  )}
+                </a>
+              );
+            })}
           </div>
 
           {/* Action CTAs & Language Selector */}
-          <div className="hidden md:flex items-center gap-2 shrink-0">
+          <div className="hidden md:flex items-center gap-2.5 shrink-0">
             {/* Clean Language Selector Dropdown */}
             <LanguageSelector variant="navbar" />
 
             <a
               href={`tel:${CONTACT_INFO.phoneRaw}`}
-              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-extrabold text-[#0c2340] bg-slate-50 hover:bg-slate-100 border border-slate-200 transition-all shadow-2xs whitespace-nowrap"
+              className="inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-xl text-xs font-extrabold text-[#0c2340] bg-slate-50 hover:bg-slate-100 border border-slate-200 transition-all shadow-2xs whitespace-nowrap hover:scale-102"
             >
               <HiOutlinePhone className="w-3.5 h-3.5 text-[#0a8543] shrink-0" />
               <span>{CONTACT_INFO.phone}</span>
@@ -92,7 +163,7 @@ export default function Navbar({ onOpenDemoModal }) {
 
             <button
               onClick={onOpenDemoModal}
-              className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-extrabold text-white bg-[#f26522] hover:bg-[#d95314] shadow-xs shadow-orange-500/20 transition-all hover:scale-102 active:scale-98 cursor-pointer whitespace-nowrap"
+              className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl text-xs font-extrabold text-white bg-[#f26522] hover:bg-[#d95314] shadow-xs shadow-orange-500/25 transition-all hover:scale-102 active:scale-98 cursor-pointer whitespace-nowrap"
             >
               <HiOutlineSparkles className="w-3.5 h-3.5 shrink-0" />
               <span>{t.nav.bookDemoBtn}</span>
